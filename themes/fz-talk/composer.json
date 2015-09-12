@@ -1,0 +1,27 @@
+{
+	"name": "fz-talk",
+	"description": "This Child theme of Twenty Thirteen was put together for the talk &#34;This Talk is so Meta&#34; at WordCamp East Troy 2015",
+	"version": "0.0.1",
+	"type": "wordpress-theme",
+	"keywords": [],
+	"homepage": "https://github.com/Faison/ThisIsSoMetaTalk",
+	"license": "GPLv2.0+",
+	"authors": [
+		{
+			"name": "Faison Zutavern",
+			"email": "fzutavern@my.wctc.edu",
+		"homepage": "http://faisonz.com",
+			"role": "Developer"
+		}
+	],
+    "minimum-stability": "dev",
+	"require": {
+		"php": ">=5.4"
+	},
+    "require-dev": {
+	    "antecedent/patchwork": "1.2.*",
+        "phpunit/phpunit"     : "*@stable",
+	    "brianium/paratest"   : "dev-master",
+        "10up/wp_mock"        : "dev-master"
+    }
+}
