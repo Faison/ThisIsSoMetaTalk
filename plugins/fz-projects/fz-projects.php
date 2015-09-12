@@ -44,6 +44,10 @@ define( 'FZP_INC',     FZP_PATH . 'includes/' );
 // Include files
 require_once FZP_INC . 'core/setup.php';
 
+// Include Team Member files
+require_once FZP_INC . 'team-members/team-members.php';
+require_once FZP_INC . 'team-members/team-members-post.php';
+
 
 // Activation/Deactivation
 register_activation_hook( __FILE__, '\FZ_Projects\Core\activate' );
