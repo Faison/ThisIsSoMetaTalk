@@ -30,6 +30,9 @@ function get_projects_post_type_slug() {
 	return 'projects';
 }
 
+/**
+ * Registers the Projects Post Type.
+ */
 function register_projects_post_type() {
 	$labels = array(
 		'name'               => esc_html__( 'Projects', 'fzp' ),

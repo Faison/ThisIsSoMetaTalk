@@ -30,6 +30,9 @@ function get_team_members_post_type_slug() {
 	return 'team-members';
 }
 
+/**
+ * Registers the Team Members Post Type.
+ */
 function register_team_members_post_type() {
 	$labels = array(
 		'name'               => esc_html__( 'Team Members', 'fzp' ),
