@@ -48,6 +48,10 @@ require_once FZP_INC . 'core/setup.php';
 require_once FZP_INC . 'team-members/team-members.php';
 require_once FZP_INC . 'team-members/team-members-post.php';
 
+// Include Project files
+require_once FZP_INC . 'projects/projects.php';
+require_once FZP_INC . 'projects/projects-post.php';
+
 
 // Activation/Deactivation
 register_activation_hook( __FILE__, '\FZ_Projects\Core\activate' );
