@@ -44,7 +44,7 @@ function register_team_members_post_type() {
 		'not_found'          => esc_html__( 'No Team Member found', 'fzp' ),
 		'not_found_in_trash' => esc_html__( 'No Team Member found in Trash', 'fzp' ),
 		'parent_item_colon'  => '',
-		'menu_name'          => esc_html__( 'Team Member', 'fzp' ),
+		'menu_name'          => esc_html__( 'Team Members', 'fzp' ),
 	);
 
 	$args = array(
