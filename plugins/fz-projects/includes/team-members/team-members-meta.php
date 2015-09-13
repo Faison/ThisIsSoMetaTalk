@@ -147,7 +147,7 @@ function save_team_member_meta( $post_id ) {
 		return;
 	}
 
-	$title_name  = get_team_member_title_meta_key();
+	$title_name = get_team_member_title_meta_key();
 
 	if ( ! empty( $_POST[ $title_name ] ) ) {
 		update_post_meta( $post_id, $title_name, $_POST[ $title_name ] );
