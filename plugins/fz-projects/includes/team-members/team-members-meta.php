@@ -92,9 +92,9 @@ add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_team_member_meta_boxes' );
 function display_team_member_meta_box( $post ) {
 	wp_nonce_field( 'fz_team_member_meta', 'fz_team_member_nonce' );
 
-	$title_name  = get_team_member_title_meta_key();
-	$title_id    = $title_name . '_id';
-	$title_value = get_post_meta( $post->ID, $title_name, true );
+	$title_key   = get_team_member_title_meta_key();
+	$title_id    = $title_key . '_id';
+	$title_value = get_post_meta( $post->ID, $title_key, true );
 
 	if ( empty( $title_value ) ) {
 		$title_value = '';
@@ -104,13 +104,13 @@ function display_team_member_meta_box( $post ) {
 		'<div class="fz-meta-field"><label for="%1$s">%2$s</label><input type="text" class="regular-text" id="%1$s" name="%3$s" value="%4$s" /></div>',
 		esc_attr( $title_id ),
 		esc_html__( 'Job Title', 'fzp' ),
-		esc_attr( $title_name ),
+		esc_attr( $title_key ),
 		esc_attr( $title_value )
 	);
 
-	$twitter_name  = get_team_member_twitter_meta_key();
-	$twitter_id    = $twitter_name . '_id';
-	$twitter_value = get_post_meta( $post->ID, $twitter_name, true );
+	$twitter_key   = get_team_member_twitter_meta_key();
+	$twitter_id    = $twitter_key . '_id';
+	$twitter_value = get_post_meta( $post->ID, $twitter_key, true );
 
 	if ( empty( $twitter_value ) ) {
 		$twitter_value = '';
@@ -120,7 +120,7 @@ function display_team_member_meta_box( $post ) {
 		'<div class="fz-meta-field"><label for="%1$s">%2$s</label><input type="text" class="regular-text" id="%1$s" name="%3$s" value="%4$s" /></div>',
 		esc_attr( $twitter_id ),
 		esc_html__( 'Twitter Handle', 'fzp' ),
-		esc_attr( $twitter_name ),
+		esc_attr( $twitter_key ),
 		esc_attr( $twitter_value )
 	);
 }
@@ -147,20 +147,20 @@ function save_team_member_meta( $post_id ) {
 		return;
 	}
 
-	$title_name = get_team_member_title_meta_key();
+	$title_key = get_team_member_title_meta_key();
 
-	if ( ! empty( $_POST[ $title_name ] ) ) {
-		update_post_meta( $post_id, $title_name, $_POST[ $title_name ] );
+	if ( ! empty( $_POST[ $title_key ] ) ) {
+		update_post_meta( $post_id, $title_key, $_POST[ $title_key ] );
 	} else {
-		delete_post_meta( $post_id, $title_name );
+		delete_post_meta( $post_id, $title_key );
 	}
 
-	$twitter_name = get_team_member_twitter_meta_key();
+	$twitter_key = get_team_member_twitter_meta_key();
 
-	if ( ! empty( $_POST[ $twitter_name ] ) ) {
-		update_post_meta( $post_id, $twitter_name, $_POST[ $twitter_name ] );
+	if ( ! empty( $_POST[ $twitter_key ] ) ) {
+		update_post_meta( $post_id, $twitter_key, $_POST[ $twitter_key ] );
 	} else {
-		delete_post_meta( $post_id, $twitter_name );
+		delete_post_meta( $post_id, $twitter_key );
 	}
 }
 
