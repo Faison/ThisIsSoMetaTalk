@@ -1,0 +1,55 @@
+/**
+ * FZ Talk
+ * https://github.com/Faison/ThisIsSoMetaTalk
+ *
+ * Copyright (c) 2015 Faison Zutavern
+ * Licensed under the GPLv2+ license.
+ */
+.single-fz_team_member .group:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.single-fz_team_member .fz_team_member {
+  padding-top: 0; }
+
+.single-fz_team_member .fz-width-wrap {
+  background-color: #eee; }
+
+.single-fz_team_member .fz-team-member-thumbnail {
+  float: left;
+  margin-right: 1em; }
+
+.single-fz_team_member .entry-title {
+  display: block;
+  clear: none; }
+
+.single-fz_team_member .entry-meta {
+  display: block;
+  clear: none; }
+  .single-fz_team_member .entry-meta span.symbol {
+    font-size: 4em;
+    line-height: normal;
+    margin-right: 5px; }
+
+.single-fz_team_member .entry-additionals {
+  margin: 0 auto;
+  max-width: 604px;
+  width: 100%; }
+
+.single-fz_team_member .project-member {
+  display: inline-block;
+  width: 30%;
+  margin: 10px 1%; }
+  .single-fz_team_member .project-member:hover {
+    border-bottom: 5px solid blue;
+    margin-bottom: 5px; }
+  .single-fz_team_member .project-member a {
+    color: initial;
+    text-decoration: none; }
+  .single-fz_team_member .project-member img {
+    max-width: 100%; }
+
+.single-fz_team_member .project-lead {
+  border-bottom: 5px solid;
+  margin-bottom: 5px; }
