@@ -54,6 +54,7 @@ require_once FZP_INC . 'team-members/template-tags.php';
 require_once FZP_INC . 'projects/projects.php';
 require_once FZP_INC . 'projects/projects-post.php';
 require_once FZP_INC . 'projects/projects-meta.php';
+require_once FZP_INC . 'projects/template-tags.php';
 
 
 // Activation/Deactivation

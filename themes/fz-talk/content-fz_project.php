@@ -53,33 +53,33 @@
 		</div><!-- .entry-content -->
 	<?php endif; ?>
 
+	<?php
+	$project_lead = \FZ_Projects\Projects\get_project_lead();
+	$team_members = \FZ_Projects\Projects\get_project_team_members();
+
+	$all_members = array();
+
+	if ( ! empty( $team_members ) ) {
+		$all_members = $team_members;
+	}
+
+	if ( ! empty( $project_lead ) ) {
+		array_unshift( $all_members, $project_lead );
+	}
+
+	if ( ! empty( $all_members ) ) : ?>
 	<div class="fz-width-wrap">
 		<div class="entry-additionals">
-			<div class="project-lead project-member">
-				<a href="#">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
-				</a>
-			</div>
-			<div class="project-member">
-				<a href="#">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
-				</a>
-			</div>
-			<div class="project-member">
-				<a href="#">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
-				</a>
-			</div>
-			<div class="project-member">
-				<a href="#">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
-				</a>
-			</div>
+			<?php foreach ( $all_members as $member ) : ?>
+				<div class="project-member <?php if ( true === $member['project_lead'] ) { echo 'project-lead'; } ?>">
+					<a href="<?php echo esc_url( $member['permalink'] ); ?>">
+						<img src="<?php echo esc_url( $member['image_src'] ); ?>" />
+						<h3><?php echo esc_html( $member['title'] ); ?></h3>
+					</a>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
+	<?php endif; ?>
 
 </article><!-- #post -->
