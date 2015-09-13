@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Enqueues the team member meta styles.
+ * Enqueues the FZ Project meta styles.
  */
 function enqueue_team_member_styles() {
 	$screen = get_current_screen();
@@ -27,8 +27,8 @@ function enqueue_team_member_styles() {
 	$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.min' : '';
 
 	wp_enqueue_style(
-		'fz-team-member-meta',
-		FZP_URL . "/assets/css/team-members-meta{$min}.css",
+		'fz-project-meta',
+		FZP_URL . "/assets/css/fz-project-meta{$min}.css",
 		array(),
 		FZP_VERSION
 	);
