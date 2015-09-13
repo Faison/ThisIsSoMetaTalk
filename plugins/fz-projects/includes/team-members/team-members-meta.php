@@ -92,8 +92,7 @@ add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_team_member_meta_boxes' );
 function display_team_member_meta_box( $post ) {
 	wp_nonce_field( 'fz_team_member_meta', 'fz_team_member_nonce' );
 
-	display_text_meta_field( get_team_member_title_meta_key(), __( 'Job Title', 'fzp' ), $post->ID );
-
+	display_text_meta_field( get_team_member_title_meta_key(),   __( 'Job Title', 'fzp' ),      $post->ID );
 	display_text_meta_field( get_team_member_twitter_meta_key(), __( 'Twitter Handle', 'fzp' ), $post->ID );
 }
 
