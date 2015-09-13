@@ -27,6 +27,7 @@
 				</h1>
 			<?php endif; // is_single() ?>
 
+			<div class="entry-subtitle">Cool Person</div>
 			<div class="entry-meta">
 				<span class='symbol'><a href="#">twitterbird</a></span>
 				<span class='symbol'><a href="#">githubalt</a></span>

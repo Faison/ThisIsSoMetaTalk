@@ -27,6 +27,7 @@
 				</h1>
 			<?php endif; // is_single() ?>
 
+			<div class="entry-subtitle">Fancy Tagline!</div>
 			<div class="entry-meta">
 				<span class='symbol'><a href="#">githubalt</a></span>
 				<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
