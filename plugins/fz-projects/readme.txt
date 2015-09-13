@@ -12,7 +12,18 @@ The Functionality for the talk &#34;This Talk is so Meta&#34; at WordCamp East T
 
 == Description ==
 
-
+Talk Steps
+1. Initial Setup
+2. Add Title (team member)
+3. Add Twitter (team member)
+4. Extract text field code (team member)
+5. Refactor the saving code (team member)
+6. Add Github and WordPress (team member)
+7. Extract text field (team member, core)
+8. Add Tagline (project)
+9. Add github (project)
+10. Add project lead (project, core)
+11. Add team members (project, core, js)
 
 == Installation ==
 
