@@ -24,6 +24,10 @@
   display: block;
   clear: none; }
 
+.single-fz_team_member .entry-subtitle, .single-fz_project .entry-subtitle {
+  font-size: 1.5em;
+  font-style: italic; }
+
 .single-fz_team_member .entry-meta, .single-fz_project .entry-meta {
   display: block;
   clear: none; }
