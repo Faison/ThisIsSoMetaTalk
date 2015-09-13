@@ -59,25 +59,24 @@
 			<div class="project-lead project-member">
 				<a href="#">
 					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
+					<h3>Project</h3>
+				</a>
+			</div>
+			<div class="project-member">
+				<a href="#">
+					<h3>Project</h3>
 				</a>
 			</div>
 			<div class="project-member">
 				<a href="#">
 					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
+					<h3>Project</h3>
 				</a>
 			</div>
 			<div class="project-member">
 				<a href="#">
 					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
-				</a>
-			</div>
-			<div class="project-member">
-				<a href="#">
-					<img src="https://placeholdit.imgix.net/~text?txtsize=34&w=200&h=200" />
-					<h3>Person</h3>
+					<h3>Project</h3>
 				</a>
 			</div>
 		</div>
