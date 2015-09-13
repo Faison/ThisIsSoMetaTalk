@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Enqueues the FZ Project meta styles.
  */
-function enqueue_team_member_styles() {
+function enqueue_project_styles() {
 	$screen = get_current_screen();
 
 	if ( get_projects_post_type_name() !== $screen->post_type ) {
@@ -34,7 +34,7 @@ function enqueue_team_member_styles() {
 	);
 }
 
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_team_member_styles' );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_project_styles' );
 
 /**
  * Returns the Project Tagline meta key.
@@ -57,7 +57,7 @@ add_action( 'fzp_init', __NAMESPACE__ . '\register_project_meta' );
 /**
  * Adds the Project meta boxes.
  */
-function add_team_member_meta_boxes() {
+function add_project_meta_boxes() {
 	if ( ! is_admin() ) {
 		return;
 	}
@@ -72,7 +72,7 @@ function add_team_member_meta_boxes() {
 	);
 }
 
-add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_team_member_meta_boxes' );
+add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_project_meta_boxes' );
 
 /**
  * Displays the Project Details Meta Box.

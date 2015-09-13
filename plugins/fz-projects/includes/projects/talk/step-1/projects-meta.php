@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Enqueues the FZ Project meta styles.
  */
-function enqueue_team_member_styles() {
+function enqueue_project_styles() {
 	$screen = get_current_screen();
 
 	if ( get_projects_post_type_name() !== $screen->post_type ) {
@@ -34,4 +34,4 @@ function enqueue_team_member_styles() {
 	);
 }
 
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_team_member_styles' );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_project_styles' );
