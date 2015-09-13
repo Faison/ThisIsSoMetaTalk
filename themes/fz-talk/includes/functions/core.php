@@ -48,7 +48,7 @@ function scripts( $debug = false ) {
 
 	wp_enqueue_script(
 		'fztalk',
-		FZTALK_TEMPLATE_URL . "/assets/js/fz-talk{$min}.js",
+		FZTALK_URL . "/assets/js/fz-talk{$min}.js",
 		array(),
 		FZTALK_VERSION,
 		true
@@ -68,6 +68,11 @@ function styles( $debug = false ) {
 	$min = ( $debug || defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 	wp_enqueue_style(
+		'parent-style',
+		get_template_directory_uri() . '/style.css'
+	);
+
+	wp_enqueue_style(
 		'fztalk',
 		FZTALK_URL . "/assets/css/fz-talk{$min}.css",
 		array(),
@@ -85,7 +90,7 @@ function styles( $debug = false ) {
  * @return void.
  */
 function header_meta() {
-	$humans = '<link type="text/plain" rel="author" href="' . FZTALK_TEMPLATE_URL . '/humans.txt" />';
+	$humans = '<link type="text/plain" rel="author" href="' . FZTALK_URL . '/humans.txt" />';
 
 	echo apply_filters( 'fztalk_humans', $humans );
 }

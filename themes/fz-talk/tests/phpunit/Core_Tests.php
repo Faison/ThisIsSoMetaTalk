@@ -25,8 +25,8 @@ class Core_Tests extends Base\TestCase {
 	 * Make sure all theme-specific constants are defined before we get started
 	 */
 	public function setUp() {
-		if ( ! defined( 'FZTALK_TEMPLATE_URL' ) ) {
-			define( 'FZTALK_TEMPLATE_URL', 'template_url' );
+		if ( ! defined( 'FZTALK_URL' ) ) {
+			define( 'FZTALK_URL', 'template_url' );
 		}
 		if ( ! defined( 'FZTALK_VERSION' ) ) {
 			define( 'FZTALK_VERSION', '0.0.1' );
