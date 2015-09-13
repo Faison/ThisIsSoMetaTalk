@@ -27,11 +27,21 @@
 				</h1>
 			<?php endif; // is_single() ?>
 
-			<div class="entry-subtitle">Cool Person</div>
+			<?php if ( ! empty( \FZ_Projects\Team_Members\get_team_member_title() ) ) : ?>
+				<div class="entry-subtitle">
+					<?php echo esc_html( \FZ_Projects\Team_Members\get_team_member_title() ); ?>
+				</div>
+			<?php endif; ?>
 			<div class="entry-meta">
-				<span class='symbol'><a href="#">twitterbird</a></span>
-				<span class='symbol'><a href="#">githubalt</a></span>
-				<span class='symbol'><a href="#">wordpress</a></span>
+				<?php if ( ! empty( \FZ_Projects\Team_Members\get_team_member_twitter_url() ) ) : ?>
+					<span class='symbol'><a href="<?php echo esc_url( \FZ_Projects\Team_Members\get_team_member_twitter_url() ); ?>" target="_blank">twitterbird</a></span>
+				<?php endif; ?>
+				<?php if ( ! empty( \FZ_Projects\Team_Members\get_team_member_github_url() ) ) : ?>
+					<span class='symbol'><a href="<?php echo esc_url( \FZ_Projects\Team_Members\get_team_member_github_url() ); ?>" target="_blank">githubalt</a></span>
+				<?php endif; ?>
+				<?php if ( ! empty( \FZ_Projects\Team_Members\get_team_member_wordpress_url() ) ) : ?>
+					<span class='symbol'><a href="<?php echo esc_url( \FZ_Projects\Team_Members\get_team_member_wordpress_url() ); ?>" target="_blank">wordpress</a></span>
+				<?php endif; ?>
 				<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->
 		</header><!-- .entry-header -->
