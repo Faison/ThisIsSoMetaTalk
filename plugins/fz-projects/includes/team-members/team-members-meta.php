@@ -92,36 +92,34 @@ add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_team_member_meta_boxes' );
 function display_team_member_meta_box( $post ) {
 	wp_nonce_field( 'fz_team_member_meta', 'fz_team_member_nonce' );
 
-	$title_key   = get_team_member_title_meta_key();
-	$title_id    = $title_key . '_id';
-	$title_value = get_post_meta( $post->ID, $title_key, true );
+	display_text_meta_field( get_team_member_title_meta_key(), __( 'Job Title', 'fzp' ), $post->ID );
 
-	if ( empty( $title_value ) ) {
-		$title_value = '';
+	display_text_meta_field( get_team_member_twitter_meta_key(), __( 'Twitter Handle', 'fzp' ), $post->ID );
+}
+
+/**
+ * Generic function for displaying a text meta field.
+ *
+ * @param string $meta_key   The meta key.
+ * @param string $meta_label The Label for the meta field.
+ * @param int    $post_id    The current post id.
+ */
+function display_text_meta_field( $meta_key, $meta_label, $post_id ) {
+	if ( empty( $meta_key ) || empty( $meta_label ) || empty( $post_id ) ) {
+		return;
+	}
+
+	$meta_value = get_post_meta( $post_id, $meta_key, true );
+
+	if ( empty( $meta_value ) ) {
+		$meta_value = '';
 	}
 
 	printf(
-		'<div class="fz-meta-field"><label for="%1$s">%2$s</label><input type="text" class="regular-text" id="%1$s" name="%3$s" value="%4$s" /></div>',
-		esc_attr( $title_id ),
-		esc_html__( 'Job Title', 'fzp' ),
-		esc_attr( $title_key ),
-		esc_attr( $title_value )
-	);
-
-	$twitter_key   = get_team_member_twitter_meta_key();
-	$twitter_id    = $twitter_key . '_id';
-	$twitter_value = get_post_meta( $post->ID, $twitter_key, true );
-
-	if ( empty( $twitter_value ) ) {
-		$twitter_value = '';
-	}
-
-	printf(
-		'<div class="fz-meta-field"><label for="%1$s">%2$s</label><input type="text" class="regular-text" id="%1$s" name="%3$s" value="%4$s" /></div>',
-		esc_attr( $twitter_id ),
-		esc_html__( 'Twitter Handle', 'fzp' ),
-		esc_attr( $twitter_key ),
-		esc_attr( $twitter_value )
+		'<div class="fz-meta-field"><label for="%1$s_id">%2$s</label><input type="text" class="regular-text" id="%1$s_id" name="%1$s" value="%3$s" /></div>',
+		esc_attr( $meta_key ),
+		esc_html( $meta_label ),
+		esc_attr( $meta_value )
 	);
 }
 
