@@ -142,25 +142,25 @@ function get_team_member_projects( $post = 0 ) {
 		array(
 			'title'        => 'Project 1',
 			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+			'image_src'    => FZP_URL . '/assets/images/default.png',
 			'project_lead' => true,
 		),
 		array(
 			'title'        => 'Project 2',
 			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+			'image_src'    => FZP_URL . '/assets/images/default.png',
 			'project_lead' => false,
 		),
 		array(
 			'title'        => 'Project 3',
 			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+			'image_src'    => FZP_URL . '/assets/images/default.png',
 			'project_lead' => false,
 		),
 		array(
 			'title'        => 'Project 4',
 			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+			'image_src'    => FZP_URL . '/assets/images/default.png',
 			'project_lead' => false,
 		),
 	);
