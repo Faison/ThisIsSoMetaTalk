@@ -43,6 +43,7 @@ define( 'FZP_INC',     FZP_PATH . 'includes/' );
 
 // Include files
 require_once FZP_INC . 'core/setup.php';
+require_once FZP_INC . 'core/meta-fields.php';
 
 // Include Team Member files
 require_once FZP_INC . 'team-members/team-members.php';
