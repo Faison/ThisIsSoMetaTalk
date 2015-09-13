@@ -34,7 +34,7 @@
 			<?php endif; ?>
 			<div class="entry-meta">
 				<?php if ( ! empty( \FZ_Projects\Projects\get_project_github_url() ) ) : ?>
-					<span class='symbol'><a href="<?php echo esc_url( \FZ_Projects\Projects\get_-project_github_url() ); ?>">githubalt</a></span>
+					<span class='symbol'><a href="<?php echo esc_url( \FZ_Projects\Projects\get_project_github_url() ); ?>">githubalt</a></span>
 				<?php endif; ?>
 				<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->
