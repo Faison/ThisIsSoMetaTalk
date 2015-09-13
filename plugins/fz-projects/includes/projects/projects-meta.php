@@ -46,10 +46,20 @@ function get_project_tagline_meta_key() {
 }
 
 /**
+ * Returns the Project Github meta key.
+ *
+ * @return string The Project Github meta key.
+ */
+function get_project_github_meta_key() {
+	return 'fz_project_github';
+}
+
+/**
  * Registers the Project meta with their sanitization functions
  */
 function register_project_meta() {
 	register_meta( 'post', get_project_tagline_meta_key(), 'sanitize_text_field', '__return_true' );
+	register_meta( 'post', get_project_github_meta_key(),  'esc_url',             '__return_true' );
 }
 
 add_action( 'fzp_init', __NAMESPACE__ . '\register_project_meta' );
@@ -83,6 +93,7 @@ function display_project_meta_box( $post ) {
 	wp_nonce_field( 'fz_project_meta', 'fz_project_nonce' );
 
 	\FZ_Projects\Core\display_text_meta_field( get_project_tagline_meta_key(), __( 'Project Tagline', 'fzp' ), $post->ID );
+	\FZ_Projects\Core\display_text_meta_field( get_project_github_meta_key(),  __( 'Github URL', 'fzp' ),      $post->ID );
 }
 
 /**
@@ -109,6 +120,7 @@ function save_project_meta( $post_id ) {
 
 	$meta_keys = array(
 		get_project_tagline_meta_key(),
+		get_project_github_meta_key(),
 	);
 
 	foreach ( $meta_keys as $meta_key ) {
