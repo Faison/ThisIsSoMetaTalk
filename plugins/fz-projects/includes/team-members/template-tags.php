@@ -129,7 +129,7 @@ function get_team_member_wordpress_url( $post = 0 ) {
  *
  * @param int|\WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
  *
- * @return string|array The Team Member's Projects, and empty string if empty, or false if we don't have a valid post.
+ * @return array|bool The Team Member's Projects, and empty string if empty, or false if we don't have a valid post.
  */
 function get_team_member_projects( $post = 0 ) {
 	$post = get_post( $post );
