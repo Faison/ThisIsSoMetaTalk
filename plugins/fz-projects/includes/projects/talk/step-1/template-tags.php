@@ -56,7 +56,7 @@ function get_project_github_url( $post = 0 ) {
 
 	// This check is just a trick to allow some default data throughout the talk, not for production code!
 	if ( ! function_exists( __NAMESPACE__ . '\get_project_github_meta_key' ) ) {
-		return 'Super Cool Stuffs!';
+		return '#';
 	}
 
 	$github_url = get_post_meta( $post->ID, get_project_github_meta_key(), true );
@@ -82,12 +82,41 @@ function get_project_lead( $post = 0 ) {
 		return false;
 	}
 
+	if ( ! function_exists( __NAMESPACE__ . '\get_project_lead_meta_key' ) ) {
+		return array(
+			'title'        => 'Person 1',
+			'permalink'    => '#',
+			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+			'project_lead' => true,
+		);
+	}
+
+	$project_lead_id   = get_post_meta( $post->ID, get_project_lead_meta_key(), true );
+
+	if ( empty( $project_lead_id ) ) {
+		return array();
+	}
+
+	$project_lead_post = get_post( $project_lead_id );
+
+	if ( empty( $project_lead_post ) ) {
+		return array();
+	}
+
 	$project_lead = array(
-		'title'        => 'Person 1',
-		'permalink'    => '#',
-		'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+		'title'        => $project_lead_post->post_title,
+		'permalink'    => get_permalink( $project_lead_id ),
 		'project_lead' => true,
 	);
+
+	if ( has_post_thumbnail( $project_lead_id ) ) {
+		$image_id  = get_post_thumbnail_id( $project_lead_id );
+		$image_src = wp_get_attachment_image_src( $image_id, 'full' );
+
+		if ( ! empty( $image_src ) ) {
+			$project_lead['image_src'] = $image_src[0];
+		}
+	}
 
 	return $project_lead;
 }
