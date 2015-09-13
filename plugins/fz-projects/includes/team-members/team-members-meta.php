@@ -55,11 +55,31 @@ function get_team_member_twitter_meta_key() {
 }
 
 /**
+ * Returns the Team Member Github meta key.
+ *
+ * @return string The Team Member Github meta key.
+ */
+function get_team_member_github_meta_key() {
+	return 'fz_team_member_github';
+}
+
+/**
+ * Returns the Team Member WordPress meta key.
+ *
+ * @return string The Team Member WordPress meta key.
+ */
+function get_team_member_wordpress_meta_key() {
+	return 'fz_team_member_wordpress';
+}
+
+/**
  * Registers the team member meta with their sanitization functions
  */
 function register_team_member_meta() {
-	register_meta( 'post', get_team_member_title_meta_key(),   'sanitize_text_field', '__return_true' );
-	register_meta( 'post', get_team_member_twitter_meta_key(), 'sanitize_text_field', '__return_true' );
+	register_meta( 'post', get_team_member_title_meta_key(),     'sanitize_text_field', '__return_true' );
+	register_meta( 'post', get_team_member_twitter_meta_key(),   'sanitize_text_field', '__return_true' );
+	register_meta( 'post', get_team_member_github_meta_key(),    'esc_url',             '__return_true' );
+	register_meta( 'post', get_team_member_wordpress_meta_key(), 'esc_url',             '__return_true' );
 }
 
 add_action( 'fzp_init', __NAMESPACE__ . '\register_team_member_meta' );
@@ -92,8 +112,10 @@ add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_team_member_meta_boxes' );
 function display_team_member_meta_box( $post ) {
 	wp_nonce_field( 'fz_team_member_meta', 'fz_team_member_nonce' );
 
-	display_text_meta_field( get_team_member_title_meta_key(),   __( 'Job Title', 'fzp' ),      $post->ID );
-	display_text_meta_field( get_team_member_twitter_meta_key(), __( 'Twitter Handle', 'fzp' ), $post->ID );
+	display_text_meta_field( get_team_member_title_meta_key(),     __( 'Job Title', 'fzp' ),         $post->ID );
+	display_text_meta_field( get_team_member_twitter_meta_key(),   __( 'Twitter Handle', 'fzp' ),    $post->ID );
+	display_text_meta_field( get_team_member_github_meta_key(),    __( 'Github Profile', 'fzp' ),    $post->ID );
+	display_text_meta_field( get_team_member_wordpress_meta_key(), __( 'WordPress Profile', 'fzp' ), $post->ID );
 }
 
 /**
@@ -147,6 +169,8 @@ function save_team_member_meta( $post_id ) {
 	$meta_keys = array(
 		get_team_member_title_meta_key(),
 		get_team_member_twitter_meta_key(),
+		get_team_member_github_meta_key(),
+		get_team_member_wordpress_meta_key(),
 	);
 
 	foreach ( $meta_keys as $meta_key ) {
