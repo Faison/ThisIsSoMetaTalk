@@ -138,32 +138,101 @@ function get_team_member_projects( $post = 0 ) {
 		return false;
 	}
 
-	$projects = array(
-		array(
-			'title'        => 'Project 1',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
-			'project_lead' => true,
-		),
-		array(
-			'title'        => 'Project 2',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
-			'project_lead' => false,
-		),
-		array(
-			'title'        => 'Project 3',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
-			'project_lead' => false,
-		),
-		array(
-			'title'        => 'Project 4',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
-			'project_lead' => false,
-		),
-	);
+	if ( ! function_exists( 'FZ_Projects\Projects\get_project_lead_meta_key' ) || ! function_exists( 'FZ_Projects\Projects\get_project_team_members_meta_key' ) ) {
+		return array(
+			array(
+				'title'        => 'Project 1',
+				'permalink'    => '#',
+				'image_src'    => FZP_URL . '/assets/images/default.png',
+				'project_lead' => true,
+			),
+			array(
+				'title'        => 'Project 2',
+				'permalink'    => '#',
+				'image_src'    => FZP_URL . '/assets/images/default.png',
+				'project_lead' => false,
+			),
+			array(
+				'title'        => 'Project 3',
+				'permalink'    => '#',
+				'image_src'    => FZP_URL . '/assets/images/default.png',
+				'project_lead' => false,
+			),
+			array(
+				'title'        => 'Project 4',
+				'permalink'    => '#',
+				'image_src'    => FZP_URL . '/assets/images/default.png',
+				'project_lead' => false,
+			),
+		);
+	}
+
+	$projects = array();
+
+	$lead_query = new \WP_Query( array(
+		'post_type' => \FZ_Projects\Projects\get_projects_post_type_name(),
+		'meta_query' => array(
+			array(
+				'key'     => \FZ_Projects\Projects\get_project_lead_meta_key(),
+				'compare' => 'like',
+				'value'   => $post->ID,
+			)
+		)
+	) );
+
+	if ( $lead_query->have_posts() ) {
+		foreach ( $lead_query->posts as $project_post ) {
+			$project = array(
+				'title'        => $project_post->post_title,
+				'permalink'    => get_permalink( $project_post->ID ),
+				'project_lead' => true,
+			);
+
+			if ( has_post_thumbnail( $project_post->ID ) ) {
+				$image_id  = get_post_thumbnail_id( $project_post->ID );
+				$image_src = wp_get_attachment_image_src( $image_id, 'full' );
+
+				if ( ! empty( $image_src ) ) {
+					$project['image_src'] = $image_src[0];
+				}
+			}
+
+			$projects[] = $project;
+		}
+	}
+
+	$projects_query = new \WP_Query( array(
+		'post_type' => \FZ_Projects\Projects\get_projects_post_type_name(),
+		'meta_query' => array(
+			array(
+				'key'     => \FZ_Projects\Projects\get_project_team_members_meta_key(),
+				'compare' => '=',
+				'type'    => 'NUMERIC',
+				'value'   => $post->ID,
+			)
+		)
+	) );
+
+	if ( $projects_query->have_posts() ) {
+		foreach ( $projects_query->posts as $project_post ) {
+			$project = array(
+				'title'        => $project_post->post_title,
+				'permalink'    => get_permalink( $project_post->ID ),
+				'project_lead' => false,
+			);
+
+			if ( has_post_thumbnail( $project_post->ID ) ) {
+				$image_id  = get_post_thumbnail_id( $project_post->ID );
+				$image_src = wp_get_attachment_image_src( $image_id, 'full' );
+
+				if ( ! empty( $image_src ) ) {
+					$project['image_src'] = $image_src[0];
+				}
+			}
+
+			$projects[] = $project;
+		}
+	}
 
 	return $projects;
 }
