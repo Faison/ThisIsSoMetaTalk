@@ -19,6 +19,7 @@
 	} );
 
 	function add_list_item( e ) {
+		// @todo: Add code to select a hidden template dropdown for adding
 		var $target_list = $( e.target ).siblings( '.js-fz-dropdown-list'),
 			$list_item   = $target_list.children().first(),
 			$new_item    = $list_item.clone();

@@ -32,6 +32,14 @@ function enqueue_project_styles() {
 		array(),
 		FZP_VERSION
 	);
+
+	wp_enqueue_script(
+		'fz-project-meta-scripts',
+		FZP_URL . "/assets/js/fz-project-meta{$min}.js",
+		array( 'jquery' ),
+		FZP_VERSION,
+		true
+	);
 }
 
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\enqueue_project_styles' );
@@ -64,13 +72,23 @@ function get_project_lead_meta_key() {
 }
 
 /**
+ * Returns the Project Team Members meta key.
+ *
+ * @return string The Project Team Members meta key.
+ */
+function get_project_team_members_meta_key() {
+	return 'fz_project_team_members';
+}
+
+/**
  * Registers the Project meta with their sanitization functions
  */
 function register_project_meta() {
 	register_meta( 'post', get_project_tagline_meta_key(), 'sanitize_text_field', '__return_true' );
 	register_meta( 'post', get_project_github_meta_key(),  'esc_url',             '__return_true' );
 
-	register_meta( 'post', get_project_lead_meta_key(), 'FZ_Projects\Team_Members\sanitize_team_member_id', '__return_true' );
+	register_meta( 'post', get_project_lead_meta_key(),         'FZ_Projects\Team_Members\sanitize_team_member_id', '__return_true' );
+	register_meta( 'post', get_project_team_members_meta_key(), 'FZ_Projects\Team_Members\sanitize_team_member_id', '__return_true' );
 }
 
 add_action( 'fzp_init', __NAMESPACE__ . '\register_project_meta' );
@@ -109,6 +127,8 @@ function display_project_meta_box( $post ) {
 	$team_members = get_team_members();
 
 	\FZ_Projects\Core\display_dropdown_meta_field( get_project_lead_meta_key(), __( 'Project Lead', 'fzp' ), $team_members, $post->ID );
+
+	\FZ_Projects\Core\display_dropdown_list_meta_field( get_project_team_members_meta_key(), __( 'Team Members', 'fzp' ), $team_members, $post->ID );
 }
 
 /**
@@ -172,6 +192,24 @@ function save_project_meta( $post_id ) {
 			update_post_meta( $post_id, $meta_key, $_POST[ $meta_key ] );
 		} else {
 			delete_post_meta( $post_id, $meta_key );
+		}
+	}
+
+	$non_unique_meta_keys = array(
+		get_project_team_members_meta_key(),
+	);
+
+	foreach ( $non_unique_meta_keys as $meta_key ) {
+		delete_post_meta( $post_id, $meta_key );
+
+		if ( ! empty( $_POST[ $meta_key ] ) ) {
+			foreach ( $_POST[ $meta_key ] as $meta_value ) {
+				if ( empty( $meta_value ) ) {
+					continue;
+				}
+
+				add_post_meta( $post_id, $meta_key, $meta_value, false );
+			}
 		}
 	}
 }
