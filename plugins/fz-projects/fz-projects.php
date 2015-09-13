@@ -47,6 +47,7 @@ require_once FZP_INC . 'core/setup.php';
 // Include Team Member files
 require_once FZP_INC . 'team-members/team-members.php';
 require_once FZP_INC . 'team-members/team-members-post.php';
+require_once FZP_INC . 'team-members/team-members-meta.php';
 
 // Include Project files
 require_once FZP_INC . 'projects/projects.php';
