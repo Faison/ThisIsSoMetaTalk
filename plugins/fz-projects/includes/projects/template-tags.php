@@ -56,7 +56,7 @@ function get_project_github_url( $post = 0 ) {
 
 	// This check is just a trick to allow some default data throughout the talk, not for production code!
 	if ( ! function_exists( __NAMESPACE__ . '\get_project_github_meta_key' ) ) {
-		return 'Super Cool Stuffs!';
+		return '#';
 	}
 
 	$github_url = get_post_meta( $post->ID, get_project_github_meta_key(), true );
