@@ -17,6 +17,12 @@ module.exports = function( grunt ) {
 					'assets/js/src/fz-projects.js'
 				],
 				dest: 'assets/js/fz-projects.js'
+			},
+			meta: {
+				src: [
+					'assets/js/src/fz-project-meta.js'
+				],
+				dest: 'assets/js/fz-project-meta.js'
 			}
 		},
 		jshint: {
@@ -29,7 +35,8 @@ module.exports = function( grunt ) {
 		uglify: {
 			all: {
 				files: {
-					'assets/js/fz-projects.min.js': ['assets/js/fz-projects.js']
+					'assets/js/fz-projects.min.js': ['assets/js/fz-projects.js'],
+					'assets/js/fz-project-meta.min.js': ['assets/js/fz-project-meta.js']
 				},
 				options: {
 					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
