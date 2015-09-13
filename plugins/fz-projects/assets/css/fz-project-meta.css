@@ -4,4 +4,17 @@
     width: 10%;
     padding-right: 10px;
     display: inline-block;
-    font-weight: bold; }
+    font-weight: bold;
+    vertical-align: text-bottom;
+    padding-top: 5px; }
+  .fz-meta-field a.fz-dropdown-list-add {
+    margin-left: 11%;
+    display: inline-block; }
+  .fz-meta-field ul.fz-dropdown-list {
+    display: inline-block;
+    margin: 0;
+    vertical-align: top; }
+    .fz-meta-field ul.fz-dropdown-list .fz-remove {
+      margin-left: 10px;
+      cursor: pointer;
+      vertical-align: middle; }
