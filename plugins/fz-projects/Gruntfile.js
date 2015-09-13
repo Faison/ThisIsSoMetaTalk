@@ -51,7 +51,8 @@ module.exports = function( grunt ) {
 			},
 			all: {
 				files: {
-					'assets/css/fz-projects.css': 'assets/css/sass/fz-projects.scss'
+					'assets/css/fz-projects.css': 'assets/css/sass/fz-projects.scss',
+					'assets/css/team-members-meta.css': 'assets/css/sass/team-members-meta.scss'
 				}
 			}
 		},
@@ -65,7 +66,8 @@ module.exports = function( grunt ) {
 					]
 				},
 				files: { 
-					'assets/css/fz-projects.css': [ 'assets/css/fz-projects.css' ]
+					'assets/css/fz-projects.css': [ 'assets/css/fz-projects.css' ],
+					'assets/css/team-members-meta.css': [ 'assets/css/team-members-meta.css' ]
 				}
 			}
 		},
