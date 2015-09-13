@@ -137,26 +137,57 @@ function get_project_team_members( $post = 0 ) {
 		return false;
 	}
 
-	$team_members = array(
-		array(
-			'title'        => 'Person 2',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+	if ( ! function_exists( __NAMESPACE__ . '\get_project_team_members_meta_key' ) ) {
+		return array(
+			array(
+				'title'        => 'Person 2',
+				'permalink'    => '#',
+				'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+				'project_lead' => false,
+			),
+			array(
+				'title'        => 'Person 3',
+				'permalink'    => '#',
+				'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+				'project_lead' => false,
+			),
+			array(
+				'title'        => 'Person 4',
+				'permalink'    => '#',
+				'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
+				'project_lead' => false,
+			),
+		);
+	}
+
+	$team_member_ids = get_post_meta( $post->ID, get_project_team_members_meta_key(), false );
+
+	if ( empty( $team_member_ids ) ) {
+		return array();
+	}
+
+	$team_members = array();
+
+	foreach ( $team_member_ids as $team_member_id ) {
+		$team_member_post = get_post( $team_member_id );
+
+		$team_member = array(
+			'title'        => $team_member_post->post_title,
+			'permalink'    => get_permalink( $team_member_id ),
 			'project_lead' => false,
-		),
-		array(
-			'title'        => 'Person 3',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
-			'project_lead' => false,
-		),
-		array(
-			'title'        => 'Person 4',
-			'permalink'    => '#',
-			'image_src'    => 'https://placeholdit.imgix.net/~text?&w=200&h=200',
-			'project_lead' => false,
-		),
-	);
+		);
+
+		if ( has_post_thumbnail( $team_member_id ) ) {
+			$image_id  = get_post_thumbnail_id( $team_member_id );
+			$image_src = wp_get_attachment_image_src( $image_id, 'full' );
+
+			if ( ! empty( $image_src ) ) {
+				$team_member['image_src'] = $image_src[0];
+			}
+		}
+
+		$team_members[] = $team_member;
+	}
 
 	return $team_members;
 }
