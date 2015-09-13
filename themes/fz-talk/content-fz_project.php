@@ -27,9 +27,15 @@
 				</h1>
 			<?php endif; // is_single() ?>
 
-			<div class="entry-subtitle">Fancy Tagline!</div>
+			<?php if ( ! empty( \FZ_Projects\Projects\get_project_tagline() ) ) : ?>
+				<div class="entry-subtitle">
+					<?php echo esc_html( \FZ_Projects\Projects\get_project_tagline() ); ?>
+				</div>
+			<?php endif; ?>
 			<div class="entry-meta">
-				<span class='symbol'><a href="#">githubalt</a></span>
+				<?php if ( ! empty( \FZ_Projects\Projects\get_project_github_url() ) ) : ?>
+					<span class='symbol'><a href="<?php echo esc_url( \FZ_Projects\Projects\get_-project_github_url() ); ?>">githubalt</a></span>
+				<?php endif; ?>
 				<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><!-- .entry-meta -->
 		</header><!-- .entry-header -->
