@@ -55,11 +55,22 @@ function get_project_github_meta_key() {
 }
 
 /**
+ * Returns the Project Github meta key.
+ *
+ * @return string The Project Github meta key.
+ */
+function get_project_lead_meta_key() {
+	return 'fz_project_lead';
+}
+
+/**
  * Registers the Project meta with their sanitization functions
  */
 function register_project_meta() {
 	register_meta( 'post', get_project_tagline_meta_key(), 'sanitize_text_field', '__return_true' );
 	register_meta( 'post', get_project_github_meta_key(),  'esc_url',             '__return_true' );
+
+	register_meta( 'post', get_project_lead_meta_key(), 'FZ_Projects\Team_Members\sanitize_team_member_id', '__return_true' );
 }
 
 add_action( 'fzp_init', __NAMESPACE__ . '\register_project_meta' );
@@ -94,6 +105,38 @@ function display_project_meta_box( $post ) {
 
 	\FZ_Projects\Core\display_text_meta_field( get_project_tagline_meta_key(), __( 'Project Tagline', 'fzp' ), $post->ID );
 	\FZ_Projects\Core\display_text_meta_field( get_project_github_meta_key(),  __( 'Github URL', 'fzp' ),      $post->ID );
+
+	$team_members = get_team_members();
+
+	\FZ_Projects\Core\display_dropdown_meta_field( get_project_lead_meta_key(), __( 'Project Lead', 'fzp' ), $team_members, $post->ID );
+}
+
+/**
+ * Returns an array of team member titles, indexed by their post ids.
+ *
+ * @return array The Team Members, indexed by their post ids.
+ */
+function get_team_members() {
+	$team_member_query = new \WP_Query( array(
+		'post_type'              => \FZ_Projects\Team_Members\get_team_members_post_type_name(),
+		'orderby'                => 'title',
+		'order'                  => 'ASC',
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
+		'posts_per_page'         => 50,
+	) );
+
+	if ( ! $team_member_query->have_posts() ) {
+		return array();
+	}
+
+	$team_members = array();
+
+	foreach ( $team_member_query->posts as $post ) {
+		$team_members[ $post->ID ] = $post->post_title;
+	}
+
+	return $team_members;
 }
 
 /**
@@ -121,6 +164,7 @@ function save_project_meta( $post_id ) {
 	$meta_keys = array(
 		get_project_tagline_meta_key(),
 		get_project_github_meta_key(),
+		get_project_lead_meta_key(),
 	);
 
 	foreach ( $meta_keys as $meta_key ) {
