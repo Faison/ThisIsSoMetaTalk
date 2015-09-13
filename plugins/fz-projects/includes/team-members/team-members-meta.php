@@ -144,20 +144,17 @@ function save_team_member_meta( $post_id ) {
 		return;
 	}
 
-	$title_key = get_team_member_title_meta_key();
+	$meta_keys = array(
+		get_team_member_title_meta_key(),
+		get_team_member_twitter_meta_key(),
+	);
 
-	if ( ! empty( $_POST[ $title_key ] ) ) {
-		update_post_meta( $post_id, $title_key, $_POST[ $title_key ] );
-	} else {
-		delete_post_meta( $post_id, $title_key );
-	}
-
-	$twitter_key = get_team_member_twitter_meta_key();
-
-	if ( ! empty( $_POST[ $twitter_key ] ) ) {
-		update_post_meta( $post_id, $twitter_key, $_POST[ $twitter_key ] );
-	} else {
-		delete_post_meta( $post_id, $twitter_key );
+	foreach ( $meta_keys as $meta_key ) {
+		if ( ! empty( $_POST[ $meta_key ] ) ) {
+			update_post_meta( $post_id, $meta_key, $_POST[ $meta_key ] );
+		} else {
+			delete_post_meta( $post_id, $meta_key );
+		}
 	}
 }
 
