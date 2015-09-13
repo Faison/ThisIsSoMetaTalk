@@ -46,10 +46,20 @@ function get_team_member_title_meta_key() {
 }
 
 /**
+ * Returns the Team Member Twitter meta key.
+ *
+ * @return string The Team Member Twitter meta key.
+ */
+function get_team_member_twitter_meta_key() {
+	return 'fz_team_member_twitter';
+}
+
+/**
  * Registers the team member meta with their sanitization functions
  */
 function register_team_member_meta() {
-	register_meta( 'post', get_team_member_title_meta_key(), 'sanitize_text_field', '__return_true' );
+	register_meta( 'post', get_team_member_title_meta_key(),   'sanitize_text_field', '__return_true' );
+	register_meta( 'post', get_team_member_twitter_meta_key(), 'sanitize_text_field', '__return_true' );
 }
 
 add_action( 'fzp_init', __NAMESPACE__ . '\register_team_member_meta' );
@@ -97,6 +107,22 @@ function display_team_member_meta_box( $post ) {
 		esc_attr( $title_name ),
 		esc_attr( $title_value )
 	);
+
+	$twitter_name  = get_team_member_twitter_meta_key();
+	$twitter_id    = $twitter_name . '_id';
+	$twitter_value = get_post_meta( $post->ID, $twitter_name, true );
+
+	if ( empty( $twitter_value ) ) {
+		$twitter_value = '';
+	}
+
+	printf(
+		'<div class="fz-meta-field"><label for="%1$s">%2$s</label><input type="text" class="regular-text" id="%1$s" name="%3$s" value="%4$s" /></div>',
+		esc_attr( $twitter_id ),
+		esc_html__( 'Twitter Handle', 'fzp' ),
+		esc_attr( $twitter_name ),
+		esc_attr( $twitter_value )
+	);
 }
 
 /**
@@ -127,6 +153,14 @@ function save_team_member_meta( $post_id ) {
 		update_post_meta( $post_id, $title_name, $_POST[ $title_name ] );
 	} else {
 		delete_post_meta( $post_id, $title_name );
+	}
+
+	$twitter_name = get_team_member_twitter_meta_key();
+
+	if ( ! empty( $_POST[ $twitter_name ] ) ) {
+		update_post_meta( $post_id, $twitter_name, $_POST[ $twitter_name ] );
+	} else {
+		delete_post_meta( $post_id, $twitter_name );
 	}
 }
 
