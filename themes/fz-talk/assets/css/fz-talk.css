@@ -10,7 +10,7 @@
   display: table;
   clear: both; }
 
-.single-fz_team_member .fz_team_member, .single-fz_project .fz_team_member {
+.single-fz_team_member .fz_team_member, .single-fz_team_member .fz_project, .single-fz_project .fz_team_member, .single-fz_project .fz_project {
   padding-top: 0; }
 
 .single-fz_team_member .fz-width-wrap, .single-fz_project .fz-width-wrap {
