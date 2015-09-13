@@ -1,8 +1,8 @@
 {
 	"version": 3,
-	"file": "team-members-meta.css",
+	"file": "fz-project-meta.css",
 	"sources": [
-		"sass/team-members-meta.scss"
+		"sass/fz-project-meta.scss"
 	],
 	"sourcesContent": [],
 	"mappings": "AAAA,cAAc,CAAC;EACd,aAAa,EAAE,IAAK,GADL;EAGf,cAAc,CAAC,KAAK,CAAd;IACL,KAAK,EAAE,GAAI;IACX,aAAa,EAAE,IAAK;IACpB,OAAO,EAAE,YAAa;IACtB,WAAW,EAAE,IAAK,GAJZ",
