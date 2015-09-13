@@ -6,4 +6,70 @@
  * Licensed under the GPLv2+ license.
  */
 
-@import url('../../../twentythirteen/style.css');
+.single-fz_team_member {
+	.group:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	.fz_team_member {
+		padding-top: 0;
+	}
+
+	.fz-width-wrap {
+		background-color: #eee;
+	}
+
+	.fz-team-member-thumbnail {
+		float: left;
+		margin-right: 1em;
+	}
+
+	.entry-title {
+		display: block;
+		clear: none;
+	}
+
+	.entry-meta {
+		display: block;
+		clear: none;
+
+		span.symbol {
+			font-size: 4em;
+			line-height: normal;
+			margin-right: 5px;
+		}
+	}
+
+	.entry-additionals {
+		margin: 0 auto;
+		max-width: 604px;
+		width: 100%;
+	}
+
+	.project-member {
+		display: inline-block;
+		width: 30%;
+		margin: 10px 1%;
+
+		&:hover {
+			border-bottom: 5px solid blue;
+			margin-bottom: 5px;
+		}
+
+		a {
+			color: initial;
+			text-decoration: none;
+		}
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	.project-lead {
+		border-bottom: 5px solid;
+		margin-bottom: 5px;
+	}
+}

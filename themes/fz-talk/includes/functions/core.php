@@ -72,10 +72,17 @@ function styles( $debug = false ) {
 		get_template_directory_uri() . '/style.css'
 	);
 
+	wp_register_style(
+		'fztalk-mono-social-icon-fonts',
+		FZTALK_URL . '/assets/css/vendor/mono-social-icon-fonts/style.css',
+		array(),
+		'1.10'
+	);
+
 	wp_enqueue_style(
 		'fztalk',
 		FZTALK_URL . "/assets/css/fz-talk{$min}.css",
-		array(),
+		array( 'fztalk-mono-social-icon-fonts'),
 		FZTALK_VERSION
 	);
 }
